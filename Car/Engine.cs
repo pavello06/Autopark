@@ -17,5 +17,10 @@
         {
             Type = type;
         }
+
+        public override string ToString()
+        {
+            return this.Type == EngineType.Petrol ? "Petrol" : this.Type == EngineType.Gas ? "Gas" : "Electric";
+        }
     }
 }
