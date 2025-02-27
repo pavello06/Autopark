@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Autopark.Car
+﻿namespace Autopark.Car
 {
     internal class Car
     {
+        protected static uint count = 0;
+
+        protected uint id;
+        public string Brand { get; }
+        public string Model { get; }
+        public uint Price { get; protected set; }
     }
 }
