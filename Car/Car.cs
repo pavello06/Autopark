@@ -1,6 +1,8 @@
-﻿namespace Autopark.Car
+﻿using Autopark.Visualization;
+
+namespace Autopark.Car
 {
-    internal abstract class Car
+    internal abstract class Car : IVisualization
     {
         protected static uint count = 0;
 
@@ -32,6 +34,43 @@
         {
             UpdatePrice(Engine.Type, newEngine.Type);
             Engine = newEngine;
+        }
+
+        public Panel Visualize()
+        {
+            var card = new Panel();
+            card.AutoSize = true;
+            card.Location = new Point(0, 0);
+            card.BackColor = Color.Pink;
+
+            var photo = new PictureBox();
+            photo.Location = new Point(0, 0);
+            photo.Size = new Size(200, 200);
+            photo.SizeMode = PictureBoxSizeMode.StretchImage;
+            card.Controls.Add(photo);
+
+            var brandAndModel = new Label();
+            brandAndModel.AutoSize = true;
+            brandAndModel.Font = new Font("Segoe UI", 14.2F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            brandAndModel.Location = new Point(0, card.Controls[^1].Location.Y + card.Controls[^1].Size.Height);
+            brandAndModel.Text = $"{Brand}, {Model}";
+            card.Controls.Add(brandAndModel);
+
+            var price = new Label();
+            price.AutoSize = true;
+            price.Font = new Font("Segoe UI", 12.2F, 0, GraphicsUnit.Point, 204);
+            price.Location = new Point(0, card.Controls[^1].Location.Y + card.Controls[^1].Size.Height);
+            price.Text = $"Price: {Price}";
+            card.Controls.Add(price);
+
+            var engineType = new Label();
+            engineType.AutoSize = true;
+            engineType.Font = new Font("Segoe UI", 12.2F, 0, GraphicsUnit.Point, 204);
+            engineType.Location = new Point(0, card.Controls[^1].Location.Y + card.Controls[^1].Size.Height);
+            engineType.Text = $"Engine type: {Engine.ToString()}";
+            card.Controls.Add(engineType);
+
+            return card;
         }
     }
 }
