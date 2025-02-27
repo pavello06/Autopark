@@ -31,11 +31,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             asidePanel = new Panel();
             actionsPanel = new Panel();
+            addButton = new Button();
             logoPanel = new Panel();
             titleLabel = new Label();
             iconPictureBox = new PictureBox();
             autoparkFlowLayoutPanel = new FlowLayoutPanel();
             asidePanel.SuspendLayout();
+            actionsPanel.SuspendLayout();
             logoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox).BeginInit();
             SuspendLayout();
@@ -52,11 +54,23 @@
             // 
             // actionsPanel
             // 
-            actionsPanel.Dock = DockStyle.Bottom;
-            actionsPanel.Location = new Point(0, 57);
+            actionsPanel.Controls.Add(addButton);
+            actionsPanel.Dock = DockStyle.Fill;
+            actionsPanel.Location = new Point(0, 51);
             actionsPanel.Name = "actionsPanel";
-            actionsPanel.Size = new Size(226, 393);
+            actionsPanel.Size = new Size(226, 399);
             actionsPanel.TabIndex = 3;
+            // 
+            // addButton
+            // 
+            addButton.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            addButton.Location = new Point(3, 3);
+            addButton.Name = "addButton";
+            addButton.Size = new Size(220, 53);
+            addButton.TabIndex = 0;
+            addButton.Text = "Add";
+            addButton.UseVisualStyleBackColor = true;
+            addButton.Click += addButton_Click;
             // 
             // logoPanel
             // 
@@ -92,17 +106,18 @@
             // 
             // autoparkFlowLayoutPanel
             // 
-            autoparkFlowLayoutPanel.Dock = DockStyle.Right;
-            autoparkFlowLayoutPanel.Location = new Point(232, 0);
+            autoparkFlowLayoutPanel.AutoScroll = true;
+            autoparkFlowLayoutPanel.Dock = DockStyle.Fill;
+            autoparkFlowLayoutPanel.Location = new Point(226, 0);
             autoparkFlowLayoutPanel.Name = "autoparkFlowLayoutPanel";
-            autoparkFlowLayoutPanel.Size = new Size(568, 450);
+            autoparkFlowLayoutPanel.Size = new Size(657, 450);
             autoparkFlowLayoutPanel.TabIndex = 1;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(883, 450);
             Controls.Add(autoparkFlowLayoutPanel);
             Controls.Add(asidePanel);
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -110,6 +125,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "YPark";
             asidePanel.ResumeLayout(false);
+            actionsPanel.ResumeLayout(false);
             logoPanel.ResumeLayout(false);
             logoPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox).EndInit();
@@ -124,5 +140,6 @@
         private PictureBox iconPictureBox;
         private Panel actionsPanel;
         private FlowLayoutPanel autoparkFlowLayoutPanel;
+        private Button addButton;
     }
 }
