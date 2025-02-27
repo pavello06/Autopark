@@ -25,7 +25,16 @@
 
         public override string ToString()
         {
-            return "; " + base.ToString() + $"Year: {Year}; First owner: {FirstOwner}";
+            return base.ToString() + "; " + $"Year: {Year}; First owner: {FirstOwner}";
+        }
+
+        public override Panel Visualize()
+        {
+            var card = base.Visualize();
+
+            ((PictureBox)card.Controls[0]).Image = Image.FromFile(Engine.Type == EngineType.Petrol ? "../../../Car/Images/PetrolRare.jpg" : Engine.Type == EngineType.Gas ? "../../../Car/Images/GasRare.jpg" : "../../../Car/Images/ElectricRare.jpg");
+
+            return card;
         }
     }
 }

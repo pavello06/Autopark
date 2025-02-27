@@ -16,7 +16,7 @@
 
         public override string ToString()
         {
-            return "; " + base.ToString() + $"Mileage: {Mileage}";
+            return base.ToString() + "; " + $"Mileage: {Mileage}";
         }
     }
 }

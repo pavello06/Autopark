@@ -13,7 +13,16 @@
 
         public override string ToString()
         {
-            return "; " + base.ToString() + $"Acceleration: {Acceleration}; Max speed: {MaxSpeed}";
+            return base.ToString() + "; " + $"Acceleration: {Acceleration}; Max speed: {MaxSpeed}";
+        }
+
+        public override Panel Visualize()
+        {
+            var card = base.Visualize();
+
+            ((PictureBox)card.Controls[0]).Image = Image.FromFile(Engine.Type == EngineType.Petrol ? "../../../Car/Images/PetrolRace.jpg" : Engine.Type == EngineType.Gas ? "../../../Car/Images/GasRace.jpg" : "../../../Car/Images/ElectricRace.jpg");
+
+            return card;
         }
     }
 }

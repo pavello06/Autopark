@@ -16,7 +16,16 @@
 
         public override string ToString()
         {
-            return "; " + base.ToString() + $"Accidents count: {AccidentsCount}";
+            return base.ToString() + "; " + $"Accidents count: {AccidentsCount}";
+        }
+
+        public override Panel Visualize()
+        {
+            var card = base.Visualize();
+
+            ((PictureBox)card.Controls[0]).Image = Image.FromFile(Engine.Type == EngineType.Petrol ? "../../../Car/Images/PetrolPassenger.jpg" : Engine.Type == EngineType.Gas ? "../../../Car/Images/GasPassenger.jpg" : "../../../Car/Images/ElectricPassenger.jpg");
+
+            return card;
         }
     }
 }
