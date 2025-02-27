@@ -8,5 +8,6 @@
         public string Brand { get; }
         public string Model { get; }
         public uint Price { get; protected set; }
+        public Engine Engine { get; protected set; }
     }
 }
