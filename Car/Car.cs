@@ -1,6 +1,6 @@
 ﻿namespace Autopark.Car
 {
-    internal class Car
+    internal abstract class Car
     {
         protected static uint count = 0;
 
