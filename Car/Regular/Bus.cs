@@ -8,5 +8,10 @@
         {
             MaxPassengersCount = maxPassengersCount;
         }
+
+        public override string ToString()
+        {
+            return "; " + base.ToString() + $"Max passengers count: {MaxPassengersCount}";
+        }
     }
 }

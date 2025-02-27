@@ -13,5 +13,10 @@
         {
             Mileage += mileage;
         }
+
+        public override string ToString()
+        {
+            return "; " + base.ToString() + $"Mileage: {Mileage}";
+        }
     }
 }

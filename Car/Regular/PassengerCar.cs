@@ -13,5 +13,10 @@
         {
             AccidentsCount++;
         }
+
+        public override string ToString()
+        {
+            return "; " + base.ToString() + $"Accidents count: {AccidentsCount}";
+        }
     }
 }

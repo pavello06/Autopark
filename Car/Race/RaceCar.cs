@@ -10,5 +10,10 @@
             Acceleration = acceleration;
             MaxSpeed = maxSpeed;
         }
+
+        public override string ToString()
+        {
+            return "; " + base.ToString() + $"Acceleration: {Acceleration}; Max speed: {MaxSpeed}";
+        }
     }
 }

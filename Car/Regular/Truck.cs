@@ -8,5 +8,10 @@
         {
             MaxWeight = maxWeight;
         }
+
+        public override string ToString()
+        {
+            return "; " + base.ToString() + $"Max weight: {MaxWeight}";
+        }
     }
 }

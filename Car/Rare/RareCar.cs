@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace Autopark.Car.Rare
+﻿namespace Autopark.Car.Rare
 {
     internal class RareCar : Car
     {
@@ -23,6 +21,11 @@ namespace Autopark.Car.Rare
         public void UpdatePrice()
         {
             Price += (uint)((carEvaluationYear - DateTime.Now.Year) * 100);
+        }
+
+        public override string ToString()
+        {
+            return "; " + base.ToString() + $"Year: {Year}; First owner: {FirstOwner}";
         }
     }
 }
