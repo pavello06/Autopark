@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             asidePanel = new Panel();
             actionsPanel = new Panel();
+            redoButton = new Button();
+            undoButton = new Button();
             addButton = new Button();
             logoPanel = new Panel();
             titleLabel = new Label();
@@ -54,12 +56,36 @@
             // 
             // actionsPanel
             // 
+            actionsPanel.Controls.Add(redoButton);
+            actionsPanel.Controls.Add(undoButton);
             actionsPanel.Controls.Add(addButton);
             actionsPanel.Dock = DockStyle.Fill;
             actionsPanel.Location = new Point(0, 51);
             actionsPanel.Name = "actionsPanel";
             actionsPanel.Size = new Size(226, 399);
             actionsPanel.TabIndex = 3;
+            // 
+            // redoButton
+            // 
+            redoButton.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            redoButton.Location = new Point(3, 121);
+            redoButton.Name = "redoButton";
+            redoButton.Size = new Size(220, 53);
+            redoButton.TabIndex = 2;
+            redoButton.Text = "Redo";
+            redoButton.UseVisualStyleBackColor = true;
+            redoButton.Click += redoButton_Click;
+            // 
+            // undoButton
+            // 
+            undoButton.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            undoButton.Location = new Point(3, 62);
+            undoButton.Name = "undoButton";
+            undoButton.Size = new Size(220, 53);
+            undoButton.TabIndex = 1;
+            undoButton.Text = "Undo";
+            undoButton.UseVisualStyleBackColor = true;
+            undoButton.Click += undoButton_Click;
             // 
             // addButton
             // 
@@ -112,6 +138,9 @@
             autoparkFlowLayoutPanel.Name = "autoparkFlowLayoutPanel";
             autoparkFlowLayoutPanel.Size = new Size(657, 450);
             autoparkFlowLayoutPanel.TabIndex = 1;
+            autoparkFlowLayoutPanel.TabStop = true;
+            autoparkFlowLayoutPanel.ContextMenuStripChanged += autoparkFlowLayoutPanel_ContextMenuStripChanged;
+            autoparkFlowLayoutPanel.Paint += autoparkFlowLayoutPanel_Paint;
             // 
             // MainForm
             // 
@@ -141,5 +170,7 @@
         private Panel actionsPanel;
         private FlowLayoutPanel autoparkFlowLayoutPanel;
         private Button addButton;
+        private Button undoButton;
+        private Button redoButton;
     }
 }
