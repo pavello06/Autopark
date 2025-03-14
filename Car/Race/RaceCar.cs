@@ -2,8 +2,8 @@
 {
     internal class RaceCar : Car
     {
-        public uint Acceleration { get; }
-        public uint MaxSpeed { get; }
+        public uint Acceleration { get; set; }
+        public uint MaxSpeed { get; set;  }
 
         public RaceCar(string brand, string model, uint price, EngineType type, uint acceleration, uint maxSpeed) : base(brand, model, price, type)
         {

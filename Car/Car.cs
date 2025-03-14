@@ -7,15 +7,11 @@ namespace Autopark.Car
         protected static uint count = 0;
 
         protected uint id;
-        public string Brand { get; }
-        public string Model { get; }
-        public uint Price { get; protected set; }
-        public Engine Engine { get; protected set; }
+        public string Brand { get; set; }
+        public string Model { get; set;  }
+        public uint Price { get; set; }
+        public Engine Engine { get; set; }
 
-        static Car()
-        {
-            count++;
-        }
         public Car(string brand, string model, uint price, EngineType type)
         {
             id = count;
@@ -23,6 +19,8 @@ namespace Autopark.Car
             Model = model;
             Price = price;
             Engine = new Engine(type);
+
+            count++;
         }
 
         protected virtual void UpdatePrice(EngineType oldEngineType, EngineType newEngineType)
@@ -48,6 +46,14 @@ namespace Autopark.Car
             card.Location = new Point(0, 0);
             card.BackColor = Color.Pink;
 
+            var contextMenuStrip = new ContextMenuStrip();
+            var editMenuItem = new ToolStripMenuItem("Edit");
+            var deleteMenuItem = new ToolStripMenuItem("Delete");
+            contextMenuStrip.Items.AddRange(new[] { editMenuItem, deleteMenuItem });
+            card.ContextMenuStrip = contextMenuStrip;
+            editMenuItem.Click += EditMenuItem_Click;
+            deleteMenuItem.Click += DeleteMenuItem_Click;
+
             var photo = new PictureBox();
             photo.Location = new Point(0, 0);
             photo.Size = new Size(200, 200);
@@ -66,6 +72,25 @@ namespace Autopark.Car
             }
 
             return card;
+        }
+
+        private void EditMenuItem_Click(object sender, EventArgs e)
+        {
+            new EditForm(this).ShowDialog();
+        }
+
+        private void DeleteMenuItem_Click(object sender, EventArgs e)
+        {
+            Program.Cars.Delete(this);
+        }
+
+        public Car DeepCopy()
+        {
+            Car copy = (Car)this.MemberwiseClone(); 
+
+            copy.Engine = new Engine(this.Engine.Type);
+
+            return copy;
         }
     }
 }

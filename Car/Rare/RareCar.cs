@@ -3,12 +3,12 @@
     internal class RareCar : Car
     {
         private uint carEvaluationYear;
-        public uint Year { get; }
-        public string FirstOwner { get; }
+        public uint Year { get; set; }
+        public string FirstOwner { get; set; }
 
-        public RareCar(string brand, string model, uint price, EngineType type, uint carEvaluationYear, uint year, string firstOwner) : base(brand, model, price, type)
+        public RareCar(string brand, string model, uint price, EngineType type, uint year, string firstOwner) : base(brand, model, price, type)
         {
-            this.carEvaluationYear = carEvaluationYear;
+            this.carEvaluationYear = (uint)DateTime.Now.Year;
             Year = year;
             FirstOwner = firstOwner;
         }

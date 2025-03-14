@@ -2,16 +2,11 @@
 {
     internal class PassengerCar : RegularCar
     {
-        public uint AccidentsCount { get; private set; }
+        public uint AccidentsCount { get; set; }
 
         public PassengerCar(string brand, string model, uint price, EngineType type, uint mileage, uint accidentsCount) : base(brand, model, price, type, mileage)
         {
             AccidentsCount = accidentsCount;
-        }
-
-        public void GetIntoAccident()
-        {
-            AccidentsCount++;
         }
 
         public override string ToString()

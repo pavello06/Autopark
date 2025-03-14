@@ -2,7 +2,7 @@
 {
     internal class Bus : RegularCar
     {
-        public uint MaxPassengersCount { get; }
+        public uint MaxPassengersCount { get; set; }
 
         public Bus(string brand, string model, uint price, EngineType type, uint mileage, uint maxPassengersCount) : base(brand, model, price, type, mileage)
         {
