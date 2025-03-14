@@ -1,7 +1,11 @@
+using Autopark.Car;
+
 namespace Autopark
 {
     internal static class Program
     {
+        public static Cars? Cars;
+
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
