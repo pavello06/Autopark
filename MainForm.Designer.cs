@@ -29,6 +29,14 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            menuStrip = new MenuStrip();
+            fileToolStripMenuItem = new ToolStripMenuItem();
+            openToolStripMenuItem = new ToolStripMenuItem();
+            saveToolStripMenuItem = new ToolStripMenuItem();
+            toolStripSeparator1 = new ToolStripSeparator();
+            exitToolStripMenuItem = new ToolStripMenuItem();
+            contentPanel = new Panel();
+            autoparkFlowLayoutPanel = new FlowLayoutPanel();
             asidePanel = new Panel();
             actionsPanel = new Panel();
             redoButton = new Button();
@@ -37,12 +45,77 @@
             logoPanel = new Panel();
             titleLabel = new Label();
             iconPictureBox = new PictureBox();
-            autoparkFlowLayoutPanel = new FlowLayoutPanel();
+            openFileDialog = new OpenFileDialog();
+            saveFileDialog = new SaveFileDialog();
+            menuStrip.SuspendLayout();
+            contentPanel.SuspendLayout();
             asidePanel.SuspendLayout();
             actionsPanel.SuspendLayout();
             logoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox).BeginInit();
             SuspendLayout();
+            // 
+            // menuStrip
+            // 
+            menuStrip.ImageScalingSize = new Size(20, 20);
+            menuStrip.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem });
+            menuStrip.Location = new Point(0, 0);
+            menuStrip.Name = "menuStrip";
+            menuStrip.Size = new Size(883, 28);
+            menuStrip.TabIndex = 0;
+            menuStrip.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { openToolStripMenuItem, saveToolStripMenuItem, toolStripSeparator1, exitToolStripMenuItem });
+            fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            fileToolStripMenuItem.Size = new Size(46, 24);
+            fileToolStripMenuItem.Text = "File";
+            // 
+            // openToolStripMenuItem
+            // 
+            openToolStripMenuItem.Name = "openToolStripMenuItem";
+            openToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.O;
+            openToolStripMenuItem.Size = new Size(181, 26);
+            openToolStripMenuItem.Text = "Open";
+            // 
+            // saveToolStripMenuItem
+            // 
+            saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            saveToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.S;
+            saveToolStripMenuItem.Size = new Size(181, 26);
+            saveToolStripMenuItem.Text = "Save";
+            // 
+            // toolStripSeparator1
+            // 
+            toolStripSeparator1.Name = "toolStripSeparator1";
+            toolStripSeparator1.Size = new Size(178, 6);
+            // 
+            // exitToolStripMenuItem
+            // 
+            exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            exitToolStripMenuItem.Size = new Size(181, 26);
+            exitToolStripMenuItem.Text = "Exit";
+            // 
+            // contentPanel
+            // 
+            contentPanel.Controls.Add(autoparkFlowLayoutPanel);
+            contentPanel.Controls.Add(asidePanel);
+            contentPanel.Dock = DockStyle.Fill;
+            contentPanel.Location = new Point(0, 28);
+            contentPanel.Name = "contentPanel";
+            contentPanel.Size = new Size(883, 422);
+            contentPanel.TabIndex = 1;
+            // 
+            // autoparkFlowLayoutPanel
+            // 
+            autoparkFlowLayoutPanel.AutoScroll = true;
+            autoparkFlowLayoutPanel.Dock = DockStyle.Fill;
+            autoparkFlowLayoutPanel.Location = new Point(226, 0);
+            autoparkFlowLayoutPanel.Name = "autoparkFlowLayoutPanel";
+            autoparkFlowLayoutPanel.Size = new Size(657, 422);
+            autoparkFlowLayoutPanel.TabIndex = 3;
+            autoparkFlowLayoutPanel.TabStop = true;
             // 
             // asidePanel
             // 
@@ -51,8 +124,8 @@
             asidePanel.Dock = DockStyle.Left;
             asidePanel.Location = new Point(0, 0);
             asidePanel.Name = "asidePanel";
-            asidePanel.Size = new Size(226, 450);
-            asidePanel.TabIndex = 0;
+            asidePanel.Size = new Size(226, 422);
+            asidePanel.TabIndex = 2;
             // 
             // actionsPanel
             // 
@@ -62,7 +135,7 @@
             actionsPanel.Dock = DockStyle.Fill;
             actionsPanel.Location = new Point(0, 51);
             actionsPanel.Name = "actionsPanel";
-            actionsPanel.Size = new Size(226, 399);
+            actionsPanel.Size = new Size(226, 371);
             actionsPanel.TabIndex = 3;
             // 
             // redoButton
@@ -74,7 +147,6 @@
             redoButton.TabIndex = 2;
             redoButton.Text = "Redo";
             redoButton.UseVisualStyleBackColor = true;
-            redoButton.Click += redoButton_Click;
             // 
             // undoButton
             // 
@@ -85,7 +157,6 @@
             undoButton.TabIndex = 1;
             undoButton.Text = "Undo";
             undoButton.UseVisualStyleBackColor = true;
-            undoButton.Click += undoButton_Click;
             // 
             // addButton
             // 
@@ -96,7 +167,6 @@
             addButton.TabIndex = 0;
             addButton.Text = "Add";
             addButton.UseVisualStyleBackColor = true;
-            addButton.Click += addButton_Click;
             // 
             // logoPanel
             // 
@@ -130,47 +200,53 @@
             iconPictureBox.TabIndex = 2;
             iconPictureBox.TabStop = false;
             // 
-            // autoparkFlowLayoutPanel
+            // openFileDialog
             // 
-            autoparkFlowLayoutPanel.AutoScroll = true;
-            autoparkFlowLayoutPanel.Dock = DockStyle.Fill;
-            autoparkFlowLayoutPanel.Location = new Point(226, 0);
-            autoparkFlowLayoutPanel.Name = "autoparkFlowLayoutPanel";
-            autoparkFlowLayoutPanel.Size = new Size(657, 450);
-            autoparkFlowLayoutPanel.TabIndex = 1;
-            autoparkFlowLayoutPanel.TabStop = true;
-            autoparkFlowLayoutPanel.ContextMenuStripChanged += autoparkFlowLayoutPanel_ContextMenuStripChanged;
-            autoparkFlowLayoutPanel.Paint += autoparkFlowLayoutPanel_Paint;
+            openFileDialog.FileName = "openFileDialog";
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(883, 450);
-            Controls.Add(autoparkFlowLayoutPanel);
-            Controls.Add(asidePanel);
+            Controls.Add(contentPanel);
+            Controls.Add(menuStrip);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MainMenuStrip = menuStrip;
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "YPark";
+            menuStrip.ResumeLayout(false);
+            menuStrip.PerformLayout();
+            contentPanel.ResumeLayout(false);
             asidePanel.ResumeLayout(false);
             actionsPanel.ResumeLayout(false);
             logoPanel.ResumeLayout(false);
             logoPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
+        private MenuStrip menuStrip;
+        private ToolStripMenuItem fileToolStripMenuItem;
+        private ToolStripMenuItem openToolStripMenuItem;
+        private ToolStripMenuItem saveToolStripMenuItem;
+        private ToolStripSeparator toolStripSeparator1;
+        private ToolStripMenuItem exitToolStripMenuItem;
+        private Panel contentPanel;
+        private FlowLayoutPanel autoparkFlowLayoutPanel;
         private Panel asidePanel;
+        private Panel actionsPanel;
+        private Button redoButton;
+        private Button undoButton;
+        private Button addButton;
         private Panel logoPanel;
         private Label titleLabel;
         private PictureBox iconPictureBox;
-        private Panel actionsPanel;
-        private FlowLayoutPanel autoparkFlowLayoutPanel;
-        private Button addButton;
-        private Button undoButton;
-        private Button redoButton;
+        private OpenFileDialog openFileDialog;
+        private SaveFileDialog saveFileDialog;
     }
 }
