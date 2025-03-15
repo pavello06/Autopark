@@ -1,4 +1,4 @@
-﻿using Autopark.Car;
+﻿using Autopark.Objects;
 using System.Reflection;
 
 namespace Autopark
@@ -31,7 +31,7 @@ namespace Autopark
         private void carTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             var assembly = Assembly.GetExecutingAssembly();
-            var carCreatorType = assembly.GetType($"Autopark.Car.{carTypeComboBox.SelectedItem}");
+            var carCreatorType = assembly.GetType($"Autopark.Objects.{carTypeComboBox.SelectedItem}");
 
             var carCreatorInstance = Activator.CreateInstance(carCreatorType);
             var carTypeField = carCreatorType.GetField("CarType", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);
@@ -43,7 +43,7 @@ namespace Autopark
 
         private void AddCarFields(Type? type)
         {
-            if (type!.BaseType != typeof(Car.Car).BaseType)
+            if (type!.BaseType != typeof(Objects.Car).BaseType)
             {
                 AddCarFields(type.BaseType);
             }
@@ -91,7 +91,7 @@ namespace Autopark
             }
 
             var assembly = Assembly.GetExecutingAssembly();
-            var carCreatorType = assembly.GetType($"Autopark.Car.{carTypeComboBox.SelectedItem}");
+            var carCreatorType = assembly.GetType($"Autopark.Objects.{carTypeComboBox.SelectedItem}");
 
             Program.Cars!.Add(((CarCreator)Activator.CreateInstance(carCreatorType))!.Create(fields));
 

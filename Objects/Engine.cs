@@ -1,4 +1,4 @@
-﻿namespace Autopark.Car
+﻿namespace Autopark.Objects
 {
     internal enum EngineType
     {
@@ -17,6 +17,7 @@
         {
             Type = type;
         }
+        public Engine() { }
 
         public override string ToString()
         {

@@ -1,6 +1,10 @@
-﻿using Autopark.Visualization;
+﻿using Autopark.Objects.Race;
+using Autopark.Objects.Rare;
+using Autopark.Objects.Regular;
+using Autopark.Visualization;
+using System.Text.Json.Serialization;
 
-namespace Autopark.Car
+namespace Autopark.Objects
 {
     internal abstract class Car : IVisualization
     {
@@ -21,6 +25,10 @@ namespace Autopark.Car
             Engine = new Engine(type);
 
             count++;
+        }
+        public Car()
+        {
+
         }
 
         protected virtual void UpdatePrice(EngineType oldEngineType, EngineType newEngineType)

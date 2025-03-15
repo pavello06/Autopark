@@ -1,4 +1,4 @@
-﻿namespace Autopark.Car.Regular
+﻿namespace Autopark.Objects.Regular
 {
     internal class Bus : RegularCar
     {
@@ -9,6 +9,8 @@
             MaxPassengersCount = maxPassengersCount;
         }
 
+        public Bus() { }
+
         public override string ToString()
         {
             return base.ToString() + "; " + $"Max passengers count: {MaxPassengersCount}";
@@ -18,7 +20,7 @@
         {
             var card = base.Visualize();
 
-            ((PictureBox)card.Controls[0]).Image = Image.FromFile(Engine.Type == EngineType.Petrol ? "../../../Car/Images/PetrolBus.jpg" : Engine.Type == EngineType.Gas ? "../../../Car/Images/GasBus.jpg" : "../../../Car/Images/ElectricBus.jpg");
+            ((PictureBox)card.Controls[0]).Image = Image.FromFile(Engine.Type == EngineType.Petrol ? "../../../Objects/Images/PetrolBus.jpg" : Engine.Type == EngineType.Gas ? "../../../Objects/Images/GasBus.jpg" : "../../../Objects/Images/ElectricBus.jpg");
 
             return card;
         }

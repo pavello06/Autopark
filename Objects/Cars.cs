@@ -1,23 +1,23 @@
 ﻿using System.Runtime.CompilerServices;
 
-namespace Autopark.Car
+namespace Autopark.Objects
 {
     internal class Cars
     {
-        private List<Car> _cars;
+        public List<Car> CarsList;
         private FlowLayoutPanel _flowLayoutPanel;
         private List<List<Car>> _history;
         private int _index;
 
         public Car this[int index]
         {
-            get => _cars[index];
-            set => _cars[index] = value;
+            get => CarsList[index];
+            set => CarsList[index] = value;
         }
 
         public Cars(FlowLayoutPanel flowLayoutPanel)
         {
-            _cars = new List<Car>();
+            CarsList = new List<Car>();
             _flowLayoutPanel = flowLayoutPanel;
             _history = new List<List<Car>>() { new List<Car>() };
             _index = 0;
@@ -25,14 +25,14 @@ namespace Autopark.Car
 
         public void Add(Car car) 
         {
-            _cars.Add(car);
+            CarsList.Add(car);
             _flowLayoutPanel.Controls.Add(car.Visualize());
             UpdateHistory();
         }
 
         public void Delete(Car car)
         {
-            _cars.Remove(car);
+            CarsList.Remove(car);
             UpdateView();
             UpdateHistory();
         }
@@ -40,7 +40,7 @@ namespace Autopark.Car
         public void UpdateView()
         {
             _flowLayoutPanel.Controls.Clear();
-            foreach (var car in _cars)
+            foreach (var car in CarsList)
             {
                 _flowLayoutPanel.Controls.Add(car.Visualize());
             }
@@ -50,7 +50,7 @@ namespace Autopark.Car
         {
             _index++;
             var copy = new List<Car>();
-            foreach (var car in _cars)
+            foreach (var car in CarsList)
             {
                 copy.Add(car.DeepCopy());
             }
@@ -63,7 +63,7 @@ namespace Autopark.Car
             if (_index > 0)
             {
                 _index--;
-                _cars = new List<Car>(_history[_index]);
+                CarsList = new List<Car>(_history[_index]);
                 UpdateView();
             }
         }
@@ -73,7 +73,7 @@ namespace Autopark.Car
             if (_index < _history.Count - 1)
             {
                 _index++;
-                _cars = new List<Car>(_history[_index]);
+                CarsList = new List<Car>(_history[_index]);
                 UpdateView();
             }
         }

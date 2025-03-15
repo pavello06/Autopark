@@ -1,4 +1,4 @@
-﻿namespace Autopark.Car.Rare
+﻿namespace Autopark.Objects.Rare
 {
     internal class RareCar : Car
     {
@@ -12,6 +12,7 @@
             Year = year;
             FirstOwner = firstOwner;
         }
+        public RareCar() { }
 
         protected override void UpdatePrice(EngineType oldEngineType, EngineType newEngineType)
         {
@@ -32,7 +33,7 @@
         {
             var card = base.Visualize();
 
-            ((PictureBox)card.Controls[0]).Image = Image.FromFile(Engine.Type == EngineType.Petrol ? "../../../Car/Images/PetrolRare.jpg" : Engine.Type == EngineType.Gas ? "../../../Car/Images/GasRare.jpg" : "../../../Car/Images/ElectricRare.jpg");
+            ((PictureBox)card.Controls[0]).Image = Image.FromFile(Engine.Type == EngineType.Petrol ? "../../../Objects/Images/PetrolRare.jpg" : Engine.Type == EngineType.Gas ? "../../../Objects/Images/GasRare.jpg" : "../../../Objects/Images/ElectricRare.jpg");
 
             return card;
         }

@@ -1,8 +1,8 @@
-﻿using Autopark.Car.Rare;
-using Autopark.Car.Regular;
-using Autopark.Car.Race;
+﻿using Autopark.Objects.Rare;
+using Autopark.Objects.Regular;
+using Autopark.Objects.Race;
 
-namespace Autopark.Car
+namespace Autopark.Objects
 {
     internal abstract class CarCreator
     {
