@@ -1,4 +1,4 @@
-﻿namespace Autopark.Objects
+﻿namespace Autopark.CarTypes
 {
     internal enum EngineType
     {

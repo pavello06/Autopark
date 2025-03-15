@@ -1,13 +1,13 @@
-﻿using Autopark.Car;
+﻿using Autopark.CarTypes;
 using System.Reflection;
 
 namespace Autopark
 {
     public partial class EditForm : Form
     {
-        private Car.Car _car;
+        private CarTypes.Car _car;
 
-        internal EditForm(Car.Car car)
+        internal EditForm(CarTypes.Car car)
         {
             InitializeComponent();
 
@@ -82,7 +82,7 @@ namespace Autopark
                     if (property.PropertyType == typeof(Engine))
                     {
                         convertedValue = textBox.Text;
-                        _car.ChangeEngine(new Car.Engine((EngineType)Enum.Parse(typeof(EngineType), ((string)convertedValue))));
+                        _car.ChangeEngine(new CarTypes.Engine((EngineType)Enum.Parse(typeof(EngineType), ((string)convertedValue))));
                     }
                     else
                     {

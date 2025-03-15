@@ -1,4 +1,4 @@
-﻿namespace Autopark.Objects.Regular
+﻿namespace Autopark.CarTypes.Regular
 {
     internal abstract class RegularCar : Car
     {
@@ -8,7 +8,6 @@
         {
             Mileage = mileage;
         }
-
         public RegularCar() { }
 
         public override string ToString()

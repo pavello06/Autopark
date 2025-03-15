@@ -1,4 +1,4 @@
-using Autopark.Objects.Regular;
+using Autopark.CarTypes.Regular;
 
 namespace Autopark
 {
@@ -8,7 +8,7 @@ namespace Autopark
         {
             InitializeComponent();
 
-            Program.Cars = new Objects.Cars(autoparkFlowLayoutPanel);
+            Program.Cars = new CarTypes.Cars(autoparkFlowLayoutPanel);
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -32,12 +32,12 @@ namespace Autopark
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            File.File.Deserialize("user.json");
+            Serializarion.Serialization.Deserialize("user.json");
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            File.File.Serialize("user.json");
+            Serializarion.Serialization.Serialize("user.json");
         }
     }
 }

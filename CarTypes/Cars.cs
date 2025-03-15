@@ -1,12 +1,12 @@
 ﻿using System.Runtime.CompilerServices;
 
-namespace Autopark.Objects
+namespace Autopark.CarTypes
 {
     internal class Cars
     {
         public List<Car> CarsList;
-        private FlowLayoutPanel _flowLayoutPanel;
-        private List<List<Car>> _history;
+        private readonly FlowLayoutPanel _flowLayoutPanel;
+        private readonly List<List<Car>> _history;
         private int _index;
 
         public Car this[int index]

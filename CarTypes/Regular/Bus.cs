@@ -1,4 +1,4 @@
-﻿namespace Autopark.Objects.Regular
+﻿namespace Autopark.CarTypes.Regular
 {
     internal class Bus : RegularCar
     {
@@ -8,21 +8,18 @@
         {
             MaxPassengersCount = maxPassengersCount;
         }
-
         public Bus() { }
-
-        public override string ToString()
-        {
-            return base.ToString() + "; " + $"Max passengers count: {MaxPassengersCount}";
-        }
 
         public override Panel Visualize()
         {
             var card = base.Visualize();
-
-            ((PictureBox)card.Controls[0]).Image = Image.FromFile(Engine.Type == EngineType.Petrol ? "../../../Objects/Images/PetrolBus.jpg" : Engine.Type == EngineType.Gas ? "../../../Objects/Images/GasBus.jpg" : "../../../Objects/Images/ElectricBus.jpg");
-
+            ((PictureBox)card.Controls[0]).Image = Image.FromFile(Engine.Type == EngineType.Petrol ? "../../../CarTypes/Images/PetrolBus.jpg" : Engine.Type == EngineType.Gas ? "../../../CarTypes/Images/GasBus.jpg" : "../../../CarTypes/Images/ElectricBus.jpg");
             return card;
+        }
+
+        public override string ToString()
+        {
+            return base.ToString() + "; " + $"Max passengers count: {MaxPassengersCount}";
         }
     }
 }

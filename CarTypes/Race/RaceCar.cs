@@ -1,4 +1,4 @@
-﻿namespace Autopark.Objects.Race
+﻿namespace Autopark.CarTypes.Race
 {
     internal class RaceCar : Car
     {
@@ -10,21 +10,18 @@
             Acceleration = acceleration;
             MaxSpeed = maxSpeed;
         }
-
         public RaceCar() { }
-
-        public override string ToString()
-        {
-            return base.ToString() + "; " + $"Acceleration: {Acceleration}; Max speed: {MaxSpeed}";
-        }
 
         public override Panel Visualize()
         {
             var card = base.Visualize();
-
-            ((PictureBox)card.Controls[0]).Image = Image.FromFile(Engine.Type == EngineType.Petrol ? "../../../Objects/Images/PetrolRace.jpg" : Engine.Type == EngineType.Gas ? "../../../Objects/Images/GasRace.jpg" : "../../../Objects/Images/ElectricRace.jpg");
-
+            ((PictureBox)card.Controls[0]).Image = Image.FromFile(Engine.Type == EngineType.Petrol ? "../../../CarTypes/Images/PetrolRace.jpg" : Engine.Type == EngineType.Gas ? "../../../CarTypes/Images/GasRace.jpg" : "../../../CarTypes/Images/ElectricRace.jpg");
             return card;
+        }
+
+        public override string ToString()
+        {
+            return base.ToString() + "; " + $"Acceleration: {Acceleration}; Max speed: {MaxSpeed}";
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using Autopark.Objects;
+﻿using Autopark.CarTypes;
 using System.Reflection;
 
 namespace Autopark
@@ -43,7 +43,7 @@ namespace Autopark
 
         private void AddCarFields(Type? type)
         {
-            if (type!.BaseType != typeof(Objects.Car).BaseType)
+            if (type!.BaseType != typeof(CarTypes.Car).BaseType)
             {
                 AddCarFields(type.BaseType);
             }

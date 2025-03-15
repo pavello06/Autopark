@@ -1,13 +1,10 @@
-﻿using Autopark.Objects;
-using Autopark.Objects.Race;
-using Autopark.Objects.Rare;
-using Microsoft.VisualBasic.Logging;
+﻿using Autopark.CarTypes;
 using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 
-namespace Autopark.File
+namespace Autopark.Serializarion
 {
     internal class CarConverter : JsonConverter<Car>
     {
@@ -63,50 +60,49 @@ namespace Autopark.File
         }
     }
 
-    internal static class File
+    internal static class Serialization
     {
+        private static JsonSerializerOptions options;
+
+        static Serialization()
+        {
+            options = new JsonSerializerOptions
+            {
+                Converters = { new CarConverter() },
+                WriteIndented = true
+            };
+        }
+
         public static void Serialize(string fileName)
         {
-            using (FileStream fileStream = new FileStream(fileName, FileMode.OpenOrCreate))
+            using var fileStream = new FileStream(fileName, FileMode.OpenOrCreate);
+            if (fileName.EndsWith(".json"))
             {
-                if (fileName.EndsWith(".json"))
-                {
-                    var options = new JsonSerializerOptions
-                    {
-                        Converters = { new CarConverter() },
-                        WriteIndented = true 
-                    };
-
-                    JsonSerializer.Serialize(fileStream, Program.Cars.CarsList, options);
-                }
-                else
-                {
-                    XmlSerializer formatter = new XmlSerializer(typeof(List<Objects.Car>));
-                    formatter.Serialize(fileStream, Program.Cars!.CarsList);
-                }
+                JsonSerializer.Serialize(fileStream, Program.Cars!.CarsList, options);
+            }
+            else
+            {
+                //XmlSerializer formatter = new XmlSerializer(typeof(List<CarTypes.Car>));
+                //formatter.Serialize(fileStream, Program.Cars!.CarsList);
             }
         }
 
         public static void Deserialize(string fileName)
         {
-            using (FileStream fileStream = new FileStream(fileName, FileMode.OpenOrCreate))
+            using var fileStream = new FileStream(fileName, FileMode.OpenOrCreate);
+            if (fileName.EndsWith(".json"))
             {
-                if (fileName.EndsWith(".json"))
+                if (JsonSerializer.Deserialize(fileStream, typeof(List<Car>), options) is List<Car> list)
                 {
-                    var options = new JsonSerializerOptions
-                    {
-                        Converters = { new CarConverter() },
-                        WriteIndented = true
-                    };
-
-                    Program.Cars.CarsList = (List<Car>)JsonSerializer.Deserialize(fileStream, typeof(List<Car>), options);
-                    //Program.Cars.UpdateView();
+                    Program.Cars!.CarsList = list;
+                    Program.Cars!.UpdateView();
+                    Program.Cars!.UpdateHistory();
                 }
-                else
-                {
-                    //XmlSerializer formatter = new XmlSerializer(typeof(List<List<(string, object)>>));
-                    //formatter.Serialize(fileStream, list);
-                }
+            }
+            else
+            {
+                //XmlSerializer formatter = new XmlSerializer(typeof(List<List<(string, object)>>));
+                //formatter.Serialize(fileStream, list);
             }
         }
     }

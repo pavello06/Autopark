@@ -1,4 +1,4 @@
-﻿namespace Autopark.Objects.Regular
+﻿namespace Autopark.CarTypes.Regular
 {
     internal class Truck : RegularCar
     {
@@ -8,21 +8,18 @@
         {
             MaxWeight = maxWeight;
         }
-
         public Truck() { }
-
-        public override string ToString()
-        {
-            return base.ToString() + "; " + $"Max weight: {MaxWeight}";
-        }
 
         public override Panel Visualize()
         {
             var card = base.Visualize();
-
-            ((PictureBox)card.Controls[0]).Image = Image.FromFile(Engine.Type == EngineType.Petrol ? "../../../Objects/Images/PetrolTruck.jpg" : Engine.Type == EngineType.Gas ? "../../../Objects/Images/GasTruck.jpg" : "../../../Objects/Images/ElectricTruck.jpg");
-
+            ((PictureBox)card.Controls[0]).Image = Image.FromFile(Engine.Type == EngineType.Petrol ? "../../../CarTypes/Images/PetrolTruck.jpg" : Engine.Type == EngineType.Gas ? "../../../CarTypes/Images/GasTruck.jpg" : "../../../CarTypes/Images/ElectricTruck.jpg");
             return card;
+        }
+
+        public override string ToString()
+        {
+            return base.ToString() + "; " + $"Max weight: {MaxWeight}";
         }
     }
 }

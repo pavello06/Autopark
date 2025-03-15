@@ -1,4 +1,4 @@
-﻿namespace Autopark.Objects.Regular
+﻿namespace Autopark.CarTypes.Regular
 {
     internal class PassengerCar : RegularCar
     {
@@ -8,21 +8,18 @@
         {
             AccidentsCount = accidentsCount;
         }
-
         public PassengerCar() { }
-
-        public override string ToString()
-        {
-            return base.ToString() + "; " + $"Accidents count: {AccidentsCount}";
-        }
 
         public override Panel Visualize()
         {
             var card = base.Visualize();
-
-            ((PictureBox)card.Controls[0]).Image = Image.FromFile(Engine.Type == EngineType.Petrol ? "../../../Objects/Images/PetrolPassenger.jpg" : Engine.Type == EngineType.Gas ? "../../../Objects/Images/GasPassenger.jpg" : "../../../Objects/Images/ElectricPassenger.jpg");
-
+            ((PictureBox)card.Controls[0]).Image = Image.FromFile(Engine.Type == EngineType.Petrol ? "../../../CarTypes/Images/PetrolPassenger.jpg" : Engine.Type == EngineType.Gas ? "../../../CarTypes/Images/GasPassenger.jpg" : "../../../CarTypes/Images/ElectricPassenger.jpg");
             return card;
+        }
+
+        public override string ToString()
+        {
+            return base.ToString() + "; " + $"Accidents count: {AccidentsCount}";
         }
     }
 }
