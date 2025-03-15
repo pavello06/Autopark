@@ -1,4 +1,4 @@
-using Autopark.Car.Regular;
+using Autopark.Objects.Regular;
 
 namespace Autopark
 {
@@ -8,7 +8,7 @@ namespace Autopark
         {
             InitializeComponent();
 
-            Program.Cars = new Car.Cars(autoparkFlowLayoutPanel);
+            Program.Cars = new Objects.Cars(autoparkFlowLayoutPanel);
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -17,24 +17,27 @@ namespace Autopark
             addForm.ShowDialog();
         }
 
-        private void autoparkFlowLayoutPanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void autoparkFlowLayoutPanel_ContextMenuStripChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void undoButton_Click(object sender, EventArgs e)
         {
-            Program.Cars.Undo();
+
+            Program.Cars!.Undo();
+
         }
 
         private void redoButton_Click(object sender, EventArgs e)
         {
-            Program.Cars.Redo();
+            Program.Cars!.Redo();
+            
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            File.File.Deserialize("user.json");
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            File.File.Serialize("user.json");
         }
     }
 }
