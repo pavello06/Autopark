@@ -1,4 +1,6 @@
 ﻿using Autopark.CarTypes;
+using Autopark.CarTypes.Race;
+using Autopark.CarTypes.Rare;
 using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -62,6 +64,7 @@ namespace Autopark.Serializarion
     internal static class Serialization
     {
         private static JsonSerializerOptions options;
+        private static XmlSerializer formatter;
 
         static Serialization()
         {
@@ -70,6 +73,19 @@ namespace Autopark.Serializarion
                 Converters = { new CarConverter() },
                 WriteIndented = true
             };
+
+            var assembly = Assembly.GetExecutingAssembly();
+            var allTypes = assembly.GetTypes();
+            var baseClassType = typeof(Car);
+            List<Type> types = new List<Type>();
+            foreach (var type in allTypes)
+            {
+                if (!type.IsAbstract && baseClassType.IsAssignableFrom(type))
+                {
+                    types.Add(type);
+                }
+            }
+            formatter = new XmlSerializer(typeof(List<Car>), types.ToArray());
         }
 
         public static void Serialize(string fileName)
@@ -80,9 +96,8 @@ namespace Autopark.Serializarion
                 JsonSerializer.Serialize(fileStream, Program.Cars!.CarsList, options);
             }
             else
-            {
-                //XmlSerializer formatter = new XmlSerializer(typeof(List<CarTypes.Car>));
-                //formatter.Serialize(fileStream, Program.Cars!.CarsList);
+            {       
+                formatter.Serialize(fileStream, Program.Cars!.CarsList);
             }
         }
 
@@ -100,8 +115,12 @@ namespace Autopark.Serializarion
             }
             else
             {
-                //XmlSerializer formatter = new XmlSerializer(typeof(List<List<(string, object)>>));
-                //formatter.Serialize(fileStream, list);
+                if (formatter.Deserialize(fileStream) is List<Car> list)
+                {
+                    Program.Cars!.CarsList = list;
+                    Program.Cars!.UpdateView();
+                    Program.Cars!.UpdateHistory();
+                }
             }
         }
     }
