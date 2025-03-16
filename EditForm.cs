@@ -5,7 +5,7 @@ namespace Autopark
 {
     public partial class EditForm : Form
     {
-        private CarTypes.Car _car;
+        private readonly Car _car;
 
         internal EditForm(CarTypes.Car car)
         {
@@ -39,7 +39,7 @@ namespace Autopark
             }
         }
 
-        private void textBox_TextChanged(object sender, EventArgs e)
+        private void textBox_TextChanged(object? sender, EventArgs e)
         {
             editButton.Enabled = CanEdit();
         }
@@ -71,7 +71,10 @@ namespace Autopark
 
                 properties.InsertRange(0, currentProperties);
 
-                currentType = currentType.BaseType;
+                if (currentType.BaseType != null)
+                {
+                    currentType = currentType.BaseType;
+                }
             }
 
             foreach (var property in properties)
@@ -94,8 +97,8 @@ namespace Autopark
                 }
             }
 
-            Program.Cars.UpdateView();
-            Program.Cars.UpdateHistory();
+            Program.Cars!.UpdateView();
+            Program.Cars!.UpdateHistory();
 
             this.Close();
         }

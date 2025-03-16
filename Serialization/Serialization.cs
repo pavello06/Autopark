@@ -1,6 +1,4 @@
 ﻿using Autopark.CarTypes;
-using Autopark.CarTypes.Race;
-using Autopark.CarTypes.Rare;
 using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
