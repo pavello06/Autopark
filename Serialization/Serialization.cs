@@ -40,9 +40,8 @@ namespace Autopark.Serializarion
                 {
                     if (property.PropertyType == typeof(Engine))
                     {
-                        writer.WriteStartObject(property.Name);
-                        writer.WriteString("Type", obj.ToString());
-                        writer.WriteEndObject();
+                        writer.WritePropertyName(property.Name);
+                        JsonSerializer.Serialize(writer, obj, options);
                     }
                     else if (property.PropertyType == typeof(uint))
                     {

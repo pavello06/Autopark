@@ -11,7 +11,7 @@
     {
         public static int[] PricesCoefficients = [5, 4, 7];
 
-        public EngineType Type { get; }
+        public EngineType Type { get; set; }
 
         public Engine(EngineType type)
         {
