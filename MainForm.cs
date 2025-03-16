@@ -1,5 +1,3 @@
-using Autopark.CarTypes.Regular;
-
 namespace Autopark
 {
     public partial class MainForm : Form
@@ -19,25 +17,28 @@ namespace Autopark
 
         private void undoButton_Click(object sender, EventArgs e)
         {
-
             Program.Cars!.Undo();
-
         }
 
         private void redoButton_Click(object sender, EventArgs e)
         {
-            Program.Cars!.Redo();
-            
+            Program.Cars!.Redo();        
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Serializarion.Serialization.Deserialize("user.json");
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                Serializarion.Serialization.Deserialize(openFileDialog.FileName);
+            }
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Serializarion.Serialization.Serialize("user.json");
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                Serializarion.Serialization.Serialize(saveFileDialog.FileName);
+            }
         }
     }
 }

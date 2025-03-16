@@ -208,6 +208,11 @@
             // openFileDialog
             // 
             openFileDialog.FileName = "openFileDialog";
+            openFileDialog.Filter = "(*.json)|*.json|(*.xml)|*.xml";
+            // 
+            // saveFileDialog
+            // 
+            saveFileDialog.Filter = "(*.json)|*.json|(*.xml)|*.xml";
             // 
             // MainForm
             // 
