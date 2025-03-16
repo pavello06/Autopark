@@ -2,7 +2,7 @@
 
 namespace Autopark.CarTypes
 {
-    internal abstract class Car : IVisualization
+    public abstract class Car : IVisualization
     {
         protected static uint count = 0;
 

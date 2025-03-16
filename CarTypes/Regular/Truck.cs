@@ -1,6 +1,6 @@
 ﻿namespace Autopark.CarTypes.Regular
 {
-    internal class Truck : RegularCar
+    public class Truck : RegularCar
     {
         public uint MaxWeight { get; set; }
 

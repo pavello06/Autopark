@@ -1,6 +1,6 @@
 ﻿namespace Autopark.CarTypes.Regular
 {
-    internal abstract class RegularCar : Car
+    public abstract class RegularCar : Car
     {
         public uint Mileage { get; set; }
 

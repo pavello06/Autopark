@@ -1,6 +1,6 @@
 ﻿namespace Autopark.CarTypes.Rare
 {
-    internal class RareCar : Car
+    public class RareCar : Car
     {
         private uint carEvaluationYear;
         public uint Year { get; set; }
@@ -27,7 +27,7 @@
         public override Panel Visualize()
         {
             var card = base.Visualize();
-            ((PictureBox)card.Controls[0]).Image = Image.FromFile(Engine.Type == EngineType.Petrol ? "../../../CarTypes/Images/PetrolRare.jpg" : Engine.Type == EngineType.Gas ? "../../../CarTypes/Images/GasRare.jpg" : "../../../CarTypes/Images/ElectricRare.jpg");
+            ((PictureBox)card.Controls[0]).Image = Image.FromFile(Engine!.Type == EngineType.Petrol ? "../../../CarTypes/Images/PetrolRare.jpg" : Engine.Type == EngineType.Gas ? "../../../CarTypes/Images/GasRare.jpg" : "../../../CarTypes/Images/ElectricRare.jpg");
             return card;
         }
         
