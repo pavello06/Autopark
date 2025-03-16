@@ -1,10 +1,10 @@
-﻿namespace Autopark.Car.Rare
+﻿namespace Autopark.CarTypes.Rare
 {
-    internal class RareCar : Car
+    public class RareCar : Car
     {
         private uint carEvaluationYear;
         public uint Year { get; set; }
-        public string FirstOwner { get; set; }
+        public string? FirstOwner { get; set; }
 
         public RareCar(string brand, string model, uint price, EngineType type, uint year, string firstOwner) : base(brand, model, price, type)
         {
@@ -12,6 +12,7 @@
             Year = year;
             FirstOwner = firstOwner;
         }
+        public RareCar() { }
 
         protected override void UpdatePrice(EngineType oldEngineType, EngineType newEngineType)
         {
@@ -23,18 +24,16 @@
             Price += (uint)((carEvaluationYear - DateTime.Now.Year) * 100);
         }
 
-        public override string ToString()
-        {
-            return base.ToString() + "; " + $"Year: {Year}; First owner: {FirstOwner}";
-        }
-
         public override Panel Visualize()
         {
             var card = base.Visualize();
-
-            ((PictureBox)card.Controls[0]).Image = Image.FromFile(Engine.Type == EngineType.Petrol ? "../../../Car/Images/PetrolRare.jpg" : Engine.Type == EngineType.Gas ? "../../../Car/Images/GasRare.jpg" : "../../../Car/Images/ElectricRare.jpg");
-
+            ((PictureBox)card.Controls[0]).Image = Image.FromFile(Engine!.Type == EngineType.Petrol ? "../../../CarTypes/Images/PetrolRare.jpg" : Engine.Type == EngineType.Gas ? "../../../CarTypes/Images/GasRare.jpg" : "../../../CarTypes/Images/ElectricRare.jpg");
             return card;
+        }
+        
+        public override string ToString()
+        {
+            return base.ToString() + "; " + $"Year: {Year}; First owner: {FirstOwner}";
         }
     }
 }

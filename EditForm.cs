@@ -1,13 +1,13 @@
-﻿using Autopark.Car;
+﻿using Autopark.CarTypes;
 using System.Reflection;
 
 namespace Autopark
 {
     public partial class EditForm : Form
     {
-        private Car.Car _car;
+        private readonly Car _car;
 
-        internal EditForm(Car.Car car)
+        internal EditForm(CarTypes.Car car)
         {
             InitializeComponent();
 
@@ -39,7 +39,7 @@ namespace Autopark
             }
         }
 
-        private void textBox_TextChanged(object sender, EventArgs e)
+        private void textBox_TextChanged(object? sender, EventArgs e)
         {
             editButton.Enabled = CanEdit();
         }
@@ -71,7 +71,10 @@ namespace Autopark
 
                 properties.InsertRange(0, currentProperties);
 
-                currentType = currentType.BaseType;
+                if (currentType.BaseType != null)
+                {
+                    currentType = currentType.BaseType;
+                }
             }
 
             foreach (var property in properties)
@@ -82,7 +85,7 @@ namespace Autopark
                     if (property.PropertyType == typeof(Engine))
                     {
                         convertedValue = textBox.Text;
-                        _car.ChangeEngine(new Car.Engine((EngineType)Enum.Parse(typeof(EngineType), ((string)convertedValue))));
+                        _car.ChangeEngine(new CarTypes.Engine((EngineType)Enum.Parse(typeof(EngineType), ((string)convertedValue))));
                     }
                     else
                     {
@@ -94,8 +97,8 @@ namespace Autopark
                 }
             }
 
-            Program.Cars.UpdateView();
-            Program.Cars.UpdateHistory();
+            Program.Cars!.UpdateView();
+            Program.Cars!.UpdateHistory();
 
             this.Close();
         }

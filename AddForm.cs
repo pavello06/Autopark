@@ -1,4 +1,4 @@
-﻿using Autopark.Car;
+﻿using Autopark.CarTypes;
 using System.Reflection;
 
 namespace Autopark
@@ -31,19 +31,25 @@ namespace Autopark
         private void carTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             var assembly = Assembly.GetExecutingAssembly();
-            var carCreatorType = assembly.GetType($"Autopark.Car.{carTypeComboBox.SelectedItem}");
+            var carCreatorType = assembly.GetType($"Autopark.CarTypes.{carTypeComboBox.SelectedItem}");
 
-            var carCreatorInstance = Activator.CreateInstance(carCreatorType);
-            var carTypeField = carCreatorType.GetField("CarType", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);
-            var carType = (Type?)carTypeField!.GetValue(carCreatorInstance);
+            if (carCreatorType != null)
+            {
+                var carCreatorInstance = Activator.CreateInstance(carCreatorType);
+                var carTypeField = carCreatorType.GetField("CarType", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);
+                var carType = carTypeField!.GetValue(carCreatorInstance) as Type;
 
-            fieldsFlowLayoutPanel.Controls.Clear();
-            AddCarFields(carType);
+                if (carType != null)
+                {
+                    fieldsFlowLayoutPanel.Controls.Clear();
+                    AddCarFields(carType);
+                }
+            }
         }
 
-        private void AddCarFields(Type? type)
+        private void AddCarFields(Type type)
         {
-            if (type!.BaseType != typeof(Car.Car).BaseType)
+            if (type.BaseType != null && type!.BaseType != typeof(CarTypes.Car).BaseType)
             {
                 AddCarFields(type.BaseType);
             }
@@ -65,7 +71,7 @@ namespace Autopark
             }
         }
 
-        private void textBox_TextChanged(object sender, EventArgs e)
+        private void textBox_TextChanged(object? sender, EventArgs e)
         {
             addButton.Enabled = CanAdd();
         }
@@ -91,9 +97,12 @@ namespace Autopark
             }
 
             var assembly = Assembly.GetExecutingAssembly();
-            var carCreatorType = assembly.GetType($"Autopark.Car.{carTypeComboBox.SelectedItem}");
+            var carCreatorType = assembly.GetType($"Autopark.CarTypes.{carTypeComboBox.SelectedItem}");
 
-            Program.Cars!.Add(((CarCreator)Activator.CreateInstance(carCreatorType))!.Create(fields));
+            if (carCreatorType != null )
+            {
+                Program.Cars!.Add((Activator.CreateInstance(carCreatorType) as CarCreator)!.Create(fields));
+            }
 
             this.Close();
         }

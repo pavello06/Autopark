@@ -1,4 +1,4 @@
-using Autopark.Car;
+using Autopark.CarTypes;
 
 namespace Autopark
 {

@@ -1,22 +1,23 @@
-﻿namespace Autopark.Car
+﻿namespace Autopark.CarTypes
 {
-    internal enum EngineType
+    public enum EngineType
     {
         Petrol,
         Gas,
         Electric
     }
 
-    internal class Engine
+    public class Engine
     {
         public static int[] PricesCoefficients = [5, 4, 7];
 
-        public EngineType Type { get; }
+        public EngineType Type { get; set; }
 
         public Engine(EngineType type)
         {
             Type = type;
         }
+        public Engine() { }
 
         public override string ToString()
         {

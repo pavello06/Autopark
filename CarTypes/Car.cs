@@ -1,16 +1,16 @@
 ﻿using Autopark.Visualization;
 
-namespace Autopark.Car
+namespace Autopark.CarTypes
 {
-    internal abstract class Car : IVisualization
+    public abstract class Car : IVisualization
     {
         protected static uint count = 0;
 
         protected uint id;
-        public string Brand { get; set; }
-        public string Model { get; set;  }
+        public string? Brand { get; set; }
+        public string? Model { get; set; }
         public uint Price { get; set; }
-        public Engine Engine { get; set; }
+        public Engine? Engine { get; set; }
 
         public Car(string brand, string model, uint price, EngineType type)
         {
@@ -22,21 +22,17 @@ namespace Autopark.Car
 
             count++;
         }
+        public Car() { }
+
+        public void ChangeEngine(Engine newEngine)
+        {
+            UpdatePrice(Engine!.Type, newEngine.Type);
+            Engine = newEngine;
+        }
 
         protected virtual void UpdatePrice(EngineType oldEngineType, EngineType newEngineType)
         {
             Price *= (uint)(Engine.PricesCoefficients[(int)newEngineType] / Engine.PricesCoefficients[(int)oldEngineType]);
-        }
-
-        public void ChangeEngine(Engine newEngine)
-        {
-            UpdatePrice(Engine.Type, newEngine.Type);
-            Engine = newEngine;
-        }
-
-        public override string ToString()
-        {
-            return $"Brand: {Brand}; Model: {Model}; Price: {Price}; Engine: {Engine.ToString()}";
         }
 
         public virtual Panel Visualize()
@@ -49,7 +45,7 @@ namespace Autopark.Car
             var contextMenuStrip = new ContextMenuStrip();
             var editMenuItem = new ToolStripMenuItem("Edit");
             var deleteMenuItem = new ToolStripMenuItem("Delete");
-            contextMenuStrip.Items.AddRange(new[] { editMenuItem, deleteMenuItem });
+            contextMenuStrip.Items.AddRange([editMenuItem, deleteMenuItem]);
             card.ContextMenuStrip = contextMenuStrip;
             editMenuItem.Click += EditMenuItem_Click;
             deleteMenuItem.Click += DeleteMenuItem_Click;
@@ -74,22 +70,25 @@ namespace Autopark.Car
             return card;
         }
 
-        private void EditMenuItem_Click(object sender, EventArgs e)
+        public override string ToString()
+        {
+            return $"Brand: {Brand}; Model: {Model}; Price: {Price}; Engine: {Engine!.ToString()}";
+        }
+
+        private void EditMenuItem_Click(object? sender, EventArgs e)
         {
             new EditForm(this).ShowDialog();
         }
 
-        private void DeleteMenuItem_Click(object sender, EventArgs e)
+        private void DeleteMenuItem_Click(object? sender, EventArgs e)
         {
-            Program.Cars.Delete(this);
+            Program.Cars!.Delete(this);
         }
 
         public Car DeepCopy()
         {
-            Car copy = (Car)this.MemberwiseClone(); 
-
-            copy.Engine = new Engine(this.Engine.Type);
-
+            var copy = (Car)this.MemberwiseClone(); 
+            copy.Engine = new Engine(this.Engine!.Type);
             return copy;
         }
     }
