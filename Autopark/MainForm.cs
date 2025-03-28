@@ -1,3 +1,5 @@
+using System.Reflection;
+
 namespace Autopark
 {
     public partial class MainForm : Form
@@ -22,7 +24,7 @@ namespace Autopark
 
         private void redoButton_Click(object sender, EventArgs e)
         {
-            Program.Cars!.Redo();        
+            Program.Cars!.Redo();
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -38,6 +40,14 @@ namespace Autopark
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 Serializarion.Serialization.Serialize(saveFileDialog.FileName);
+            }
+        }
+
+        private void addClassButton_Click(object sender, EventArgs e)
+        {
+            if (openFileDialogDll.ShowDialog() == DialogResult.OK)
+            {
+                Assembly.LoadFrom(openFileDialogDll.FileName);
             }
         }
     }

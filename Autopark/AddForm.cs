@@ -1,21 +1,37 @@
 ﻿using Autopark.CarTypes;
+using Microsoft.VisualBasic;
 using System.Reflection;
 
 namespace Autopark
 {
     public partial class AddForm : Form
     {
+        private List<Type> carCreatorTypes;
+
         public AddForm()
         {
             InitializeComponent();
 
+            carCreatorTypes = new List<Type>();
             AddCarTypes();
         }
 
         private void AddCarTypes()
         {
-            var assembly = Assembly.GetExecutingAssembly();
-            var allTypes = assembly.GetTypes();
+            Assembly[] allAssemblies = AppDomain.CurrentDomain.GetAssemblies();
+            Type[] allTypes = allAssemblies
+                .SelectMany(assembly => 
+                {
+                    try
+                    {
+                        return assembly.GetTypes(); 
+                    }
+                    catch (ReflectionTypeLoadException ex)
+                    {
+                        return ex.Types.Where(t => t != null); 
+                    }
+                })
+                .ToArray()!;
 
             var baseClassType = typeof(CarCreator);
 
@@ -23,6 +39,7 @@ namespace Autopark
             {
                 if (type != baseClassType && baseClassType.IsAssignableFrom(type))
                 {
+                    carCreatorTypes.Add(type);
                     carTypeComboBox.Items.Add(type.Name);
                 }
             }
@@ -30,8 +47,7 @@ namespace Autopark
 
         private void carTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var assembly = Assembly.GetExecutingAssembly();
-            var carCreatorType = assembly.GetType($"Autopark.CarTypes.{carTypeComboBox.SelectedItem}");
+            Type carCreatorType = carCreatorTypes.FirstOrDefault(t => t.FullName == $"Autopark.CarTypes.{carTypeComboBox.SelectedItem}")!;
 
             if (carCreatorType != null)
             {
@@ -96,8 +112,7 @@ namespace Autopark
                 fields[i] = ((TextBox)fieldsFlowLayoutPanel.Controls[i]).Text;
             }
 
-            var assembly = Assembly.GetExecutingAssembly();
-            var carCreatorType = assembly.GetType($"Autopark.CarTypes.{carTypeComboBox.SelectedItem}");
+            Type carCreatorType = carCreatorTypes.FirstOrDefault(t => t.FullName == $"Autopark.CarTypes.{carTypeComboBox.SelectedItem}")!;
 
             if (carCreatorType != null )
             {

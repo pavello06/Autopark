@@ -39,6 +39,7 @@
             autoparkFlowLayoutPanel = new FlowLayoutPanel();
             asidePanel = new Panel();
             actionsPanel = new Panel();
+            addClassButton = new Button();
             redoButton = new Button();
             undoButton = new Button();
             addButton = new Button();
@@ -47,6 +48,7 @@
             iconPictureBox = new PictureBox();
             openFileDialog = new OpenFileDialog();
             saveFileDialog = new SaveFileDialog();
+            openFileDialogDll = new OpenFileDialog();
             menuStrip.SuspendLayout();
             contentPanel.SuspendLayout();
             asidePanel.SuspendLayout();
@@ -131,6 +133,7 @@
             // 
             // actionsPanel
             // 
+            actionsPanel.Controls.Add(addClassButton);
             actionsPanel.Controls.Add(redoButton);
             actionsPanel.Controls.Add(undoButton);
             actionsPanel.Controls.Add(addButton);
@@ -139,6 +142,17 @@
             actionsPanel.Name = "actionsPanel";
             actionsPanel.Size = new Size(226, 371);
             actionsPanel.TabIndex = 3;
+            // 
+            // addClassButton
+            // 
+            addClassButton.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            addClassButton.Location = new Point(3, 180);
+            addClassButton.Name = "addClassButton";
+            addClassButton.Size = new Size(220, 53);
+            addClassButton.TabIndex = 3;
+            addClassButton.Text = "Add class";
+            addClassButton.UseVisualStyleBackColor = true;
+            addClassButton.Click += addClassButton_Click;
             // 
             // redoButton
             // 
@@ -214,6 +228,11 @@
             // 
             saveFileDialog.Filter = "(*.json)|*.json|(*.xml)|*.xml";
             // 
+            // openFileDialogDll
+            // 
+            openFileDialogDll.FileName = "openFileDialog";
+            openFileDialogDll.Filter = "(*.dll)|*.dll";
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -258,5 +277,7 @@
         private PictureBox iconPictureBox;
         private OpenFileDialog openFileDialog;
         private SaveFileDialog saveFileDialog;
+        private Button addClassButton;
+        private OpenFileDialog openFileDialogDll;
     }
 }

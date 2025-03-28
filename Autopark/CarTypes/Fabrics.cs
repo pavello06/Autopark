@@ -4,7 +4,7 @@ using Autopark.CarTypes.Race;
 
 namespace Autopark.CarTypes
 {
-    internal abstract class CarCreator
+    public abstract class CarCreator
     {
         public readonly Type CarType = typeof(Car);
         public abstract Car Create(params object[] fields);
