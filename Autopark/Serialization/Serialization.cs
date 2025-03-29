@@ -14,10 +14,23 @@ namespace Autopark.Serializarion
             var jsonObject = doc.RootElement;
 
             var type = jsonObject.GetProperty("$type").GetString();
-            var assembly = Assembly.GetExecutingAssembly();
+            Assembly[] allAssemblies = AppDomain.CurrentDomain.GetAssemblies();
+            Type[] allTypes = allAssemblies
+                .SelectMany(assembly =>
+                {
+                    try
+                    {
+                        return assembly.GetTypes();
+                    }
+                    catch (ReflectionTypeLoadException ex)
+                    {
+                        return ex.Types.Where(t => t != null);
+                    }
+                })
+                .ToArray()!;
             if (type != null)
             {
-                var carType = assembly.GetTypes().FirstOrDefault(t => t.Name == type);
+                var carType = allTypes.FirstOrDefault(t => t.Name == type);
                 if (carType != null && JsonSerializer.Deserialize(jsonObject.GetRawText(), carType, options) is Car car)
                 {
                     return car;
@@ -72,8 +85,20 @@ namespace Autopark.Serializarion
                 WriteIndented = true
             };
 
-            var assembly = Assembly.GetExecutingAssembly();
-            var allTypes = assembly.GetTypes();
+            Assembly[] allAssemblies = AppDomain.CurrentDomain.GetAssemblies();
+            Type[] allTypes = allAssemblies
+                .SelectMany(assembly =>
+                {
+                    try
+                    {
+                        return assembly.GetTypes();
+                    }
+                    catch (ReflectionTypeLoadException ex)
+                    {
+                        return ex.Types.Where(t => t != null);
+                    }
+                })
+                .ToArray()!;
             var baseClassType = typeof(Car);
             List<Type> types = new List<Type>();
             foreach (var type in allTypes)
@@ -88,7 +113,7 @@ namespace Autopark.Serializarion
 
         public static void Serialize(string fileName)
         {
-            using var fileStream = new FileStream(fileName, FileMode.OpenOrCreate);
+            using var fileStream = File.Create(fileName);
             if (fileName.EndsWith(".json"))
             {
                 JsonSerializer.Serialize(fileStream, Program.Cars!.CarsList, options);
@@ -101,7 +126,7 @@ namespace Autopark.Serializarion
 
         public static void Deserialize(string fileName)
         {
-            using var fileStream = new FileStream(fileName, FileMode.OpenOrCreate);
+            using var fileStream = File.Create(fileName);
             if (fileName.EndsWith(".json"))
             {
                 if (JsonSerializer.Deserialize(fileStream, typeof(List<Car>), options) is List<Car> list)
