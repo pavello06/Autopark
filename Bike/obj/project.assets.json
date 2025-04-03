@@ -36,9 +36,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Home\\Projects\\Autopark\\WinFormsLibrary\\WinFormsLibrary.csproj",
-      "projectName": "WinFormsLibrary",
-      "projectPath": "C:\\Home\\Projects\\Autopark\\WinFormsLibrary\\WinFormsLibrary.csproj",
+      "projectUniqueName": "C:\\Home\\Projects\\Autopark\\WinFormsLibrary\\Bike.csproj",
+      "projectName": "Bike",
+      "projectPath": "C:\\Home\\Projects\\Autopark\\WinFormsLibrary\\Bike.csproj",
       "packagesPath": "C:\\Users\\Pavel\\.nuget\\packages\\",
       "outputPath": "C:\\Home\\Projects\\Autopark\\WinFormsLibrary\\obj\\",
       "projectStyle": "PackageReference",
