@@ -1,7 +1,7 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Home\\Projects\\Autopark\\WinFormsLibrary\\Bike.csproj": {}
+    "C:\\Home\\Projects\\Autopark\\Bike\\Bike.csproj": {}
   },
   "projects": {
     "C:\\Home\\Projects\\Autopark\\Autopark\\Autopark.csproj": {
@@ -49,6 +49,12 @@
       "frameworks": {
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
+          "dependencies": {
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -72,14 +78,14 @@
         }
       }
     },
-    "C:\\Home\\Projects\\Autopark\\WinFormsLibrary\\Bike.csproj": {
+    "C:\\Home\\Projects\\Autopark\\Bike\\Bike.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Home\\Projects\\Autopark\\WinFormsLibrary\\Bike.csproj",
+        "projectUniqueName": "C:\\Home\\Projects\\Autopark\\Bike\\Bike.csproj",
         "projectName": "Bike",
-        "projectPath": "C:\\Home\\Projects\\Autopark\\WinFormsLibrary\\Bike.csproj",
+        "projectPath": "C:\\Home\\Projects\\Autopark\\Bike\\Bike.csproj",
         "packagesPath": "C:\\Users\\Pavel\\.nuget\\packages\\",
-        "outputPath": "C:\\Home\\Projects\\Autopark\\WinFormsLibrary\\obj\\",
+        "outputPath": "C:\\Home\\Projects\\Autopark\\Bike\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
