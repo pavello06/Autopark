@@ -1,8 +1,6 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace Autopark.CarTypes
+﻿namespace Autopark.CarTypes
 {
-    internal class Cars
+    public class Cars
     {
         public List<Car> CarsList;
         private readonly FlowLayoutPanel _flowLayoutPanel;
@@ -29,7 +27,6 @@ namespace Autopark.CarTypes
             _flowLayoutPanel.Controls.Add(car.Visualize());
             UpdateHistory();
         }
-
         public void Delete(Car car)
         {
             CarsList.Remove(car);
@@ -45,7 +42,6 @@ namespace Autopark.CarTypes
                 _flowLayoutPanel.Controls.Add(car.Visualize());
             }
         }
-
         public void UpdateHistory()
         {
             _index++;
@@ -67,7 +63,6 @@ namespace Autopark.CarTypes
                 UpdateView();
             }
         }
-
         public void Redo()
         {
             if (_index < _history.Count - 1)

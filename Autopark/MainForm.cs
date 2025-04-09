@@ -1,3 +1,4 @@
+using Autopark.Serialization;
 using System.Reflection;
 
 namespace Autopark
@@ -31,7 +32,7 @@ namespace Autopark
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                Serializarion.Serialization.Deserialize(openFileDialog.FileName);
+                Serialization.Serialization.Deserialize(openFileDialog.FileName);
             }
         }
 
@@ -39,7 +40,7 @@ namespace Autopark
         {
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                Serializarion.Serialization.Serialize(saveFileDialog.FileName);
+                Serialization.Serialization.Serialize(saveFileDialog.FileName);
             }
         }
 
@@ -48,6 +49,25 @@ namespace Autopark
             if (openFileDialogDll.ShowDialog() == DialogResult.OK)
             {
                 Assembly.LoadFrom(openFileDialogDll.FileName);
+            }
+        }
+
+        private void addActionButton_Click(object sender, EventArgs e)
+        {
+            if (openFileDialogDll.ShowDialog() == DialogResult.OK)
+            {
+                Assembly.LoadFrom(openFileDialogDll.FileName);
+
+                System.Type[] allTypes = Type.Type.GetTypes();
+                var baseType = typeof(IProcess);
+                foreach (var type in allTypes)
+                {
+                    if (!type.IsInterface && baseType.IsAssignableFrom(type))
+                    {
+                        Serialization.Serialization.extraSerialize = (Serialization.Serialization.ExtraSerialize)type.GetMethod("Serialize")!.CreateDelegate(typeof(Serialization.Serialization.ExtraSerialize));
+                        Serialization.Serialization.extraDeserialize = (Serialization.Serialization.ExtraDeserialize)type.GetMethod("Deserialize")!.CreateDelegate(typeof(Serialization.Serialization.ExtraDeserialize));
+                    }
+                }
             }
         }
     }

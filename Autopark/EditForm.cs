@@ -15,7 +15,7 @@ namespace Autopark
             AddCarFields(car.GetType());
         }
 
-        private void AddCarFields(Type? type)
+        private void AddCarFields(System.Type? type)
         {
             if (type!.BaseType != typeof(Object))
             {
@@ -60,7 +60,7 @@ namespace Autopark
         {
             int i = 0;
 
-            Type currentType = _car.GetType();
+            System.Type? currentType = _car.GetType();
             var properties = new List<PropertyInfo>();
 
             while (currentType != null)
@@ -71,10 +71,7 @@ namespace Autopark
 
                 properties.InsertRange(0, currentProperties);
 
-                if (currentType.BaseType != null)
-                {
-                    currentType = currentType.BaseType;
-                }
+                currentType = currentType.BaseType;
             }
 
             foreach (var property in properties)

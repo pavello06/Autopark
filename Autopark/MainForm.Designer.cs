@@ -39,6 +39,7 @@
             autoparkFlowLayoutPanel = new FlowLayoutPanel();
             asidePanel = new Panel();
             actionsPanel = new Panel();
+            addActionButton = new Button();
             addClassButton = new Button();
             redoButton = new Button();
             undoButton = new Button();
@@ -133,6 +134,7 @@
             // 
             // actionsPanel
             // 
+            actionsPanel.Controls.Add(addActionButton);
             actionsPanel.Controls.Add(addClassButton);
             actionsPanel.Controls.Add(redoButton);
             actionsPanel.Controls.Add(undoButton);
@@ -142,6 +144,17 @@
             actionsPanel.Name = "actionsPanel";
             actionsPanel.Size = new Size(226, 371);
             actionsPanel.TabIndex = 3;
+            // 
+            // addActionButton
+            // 
+            addActionButton.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            addActionButton.Location = new Point(0, 239);
+            addActionButton.Name = "addActionButton";
+            addActionButton.Size = new Size(220, 53);
+            addActionButton.TabIndex = 4;
+            addActionButton.Text = "Add action";
+            addActionButton.UseVisualStyleBackColor = true;
+            addActionButton.Click += addActionButton_Click;
             // 
             // addClassButton
             // 
@@ -279,5 +292,6 @@
         private SaveFileDialog saveFileDialog;
         private Button addClassButton;
         private OpenFileDialog openFileDialogDll;
+        private Button addActionButton;
     }
 }
