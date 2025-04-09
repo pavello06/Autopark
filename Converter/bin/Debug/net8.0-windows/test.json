@@ -1,0 +1,23 @@
+[
+  {
+    "@xsi:type": "Bike",
+    "Volume": 1,
+    "Brand": "1",
+    "Model": "1",
+    "Price": 1,
+    "Engine": {
+      "Type": 1
+    }
+  },
+  {
+    "@xsi:type": "Bus",
+    "MaxPassengersCount": 2,
+    "Mileage": 2,
+    "Brand": "2",
+    "Model": "2",
+    "Price": 2,
+    "Engine": {
+      "Type": 2
+    }
+  }
+]

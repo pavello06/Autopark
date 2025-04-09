@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfCar xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Car xsi:type="Bike">
+    <Volume>1</Volume>
+    <Brand>1</Brand>
+    <Model>1</Model>
+    <Price>1</Price>
+    <Engine>
+      <Type>1</Type>
+    </Engine>
+  </Car>
+  <Car xsi:type="Bus">
+    <MaxPassengersCount>2</MaxPassengersCount>
+    <Mileage>2</Mileage>
+    <Brand>2</Brand>
+    <Model>2</Model>
+    <Price>2</Price>
+    <Engine>
+      <Type>2</Type>
+    </Engine>
+  </Car>
+</ArrayOfCar>
